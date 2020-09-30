@@ -17,6 +17,7 @@ Inventory Mangement System
 - QR Code serial key for each item can be implement in this module
 - Everytime a personnel have to use generally restricted inventory, the QR code can be scanned to get permission from superior
 - Budget and alert systems can improve the analysis of data in a lot more effecient ways
+- After research this model was chosen because it have involvement of personnels with inventory alotted to them, unlike other available alternatives in the market
 
 
 ## Team Roles
@@ -27,4 +28,4 @@ Inventory Mangement System
 
 
 ## About completion of project
-> Most of the efforts were focused upon developing a new way that can change the way inventory is handled. Every time a lot of issues show up due to lack of care in a balanced task like keeping record of things. Some people misuse the official things without even facing any lawsuit later on, this system can get rid of most of those situations by alotting a unique QR and String ID to each item and by keeping track of each change made in database from each portal. Even if it isn't completed but this module can be further used for refernece to build up better versions of it.
+> Most of the efforts were focused upon developing a new way that can change the way inventory is handled. Every time a lot of issues show up due to lack of care in a balanced task like keeping record of items used by an organization. Some people misuse the official things without even facing any lawsuit later on, this system can get rid of most of those situations by alotting a unique QR and String ID to each item and by keeping track of each change made in database from each portal. Even if it isn't completed but this module can be further used for refernece to build up better versions of it.
