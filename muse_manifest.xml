@@ -1,0 +1,36 @@
+<manifest alg="2" build="2018.0.0.379" opt="false" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="assampolice.ims.in" resolutions="1x" timestamp="1601474825550">
+  <folder name="css">
+    <file name="site_global.css" crc="444006867"/>
+    <file name="master_a-master.css" crc="4052508179" ref="stations:index:alerts:analytics:about"/>
+    <file name="stations.css" crc="4066892025" ref="stations"/>
+    <file name="index.css" crc="322344541" ref="index"/>
+    <file name="alerts.css" crc="4122763161" ref="alerts"/>
+    <file name="analytics.css" crc="5837525" ref="analytics"/>
+    <file name="about.css" crc="4101915749" ref="about"/>
+  </folder>
+  <folder name="scripts">
+    <file name="jquery-1.8.3.min.js" crc="209076791" ref="index:stations:alerts:analytics:about"/>
+    <file name="museutils.js" crc="3803043152" ref="index:stations:alerts:analytics:about"/>
+    <file name="whatinput.js" crc="86476730" ref="index:stations:alerts:analytics:about"/>
+    <file name="museconfig.js" crc="380897831" ref="index:stations:alerts:analytics:about"/>
+    <file name="jquery.musemenu.js" crc="3784699396" ref="index:stations:alerts:analytics:about"/>
+    <file name="jquery.watch.js" crc="99325471" ref="index:stations:alerts:analytics:about"/>
+    <file name="html5shiv.js" crc="4241844378" ref="index:stations:alerts:analytics:about"/>
+    <file name="require.js" crc="4157109226" ref="index:stations:alerts:analytics:about"/>
+  </folder>
+  <folder name="images">
+    <file name="verification-square-button.png" crc="4220592514" seo="true" ref="index:stations:alerts:analytics:about">
+      <caption webpage="index" alt=""/>
+      <caption webpage="analytics" alt=""/>
+      <caption webpage="alerts" alt=""/>
+      <caption webpage="about" alt=""/>
+      <caption webpage="stations" alt=""/>
+    </file>
+    <file name="blank.gif" crc="4208392903" ref="stations"/>
+  </folder>
+  <file name="index.html" crc="162705731" seo="true" mt="1601474576494" redirect="true"/>
+  <file name="stations.html" crc="109688415" seo="true" mt="1601469330418" redirect="true"/>
+  <file name="alerts.html" crc="3796101839" seo="true" mt="1601469046721" redirect="true"/>
+  <file name="analytics.html" crc="454725451" seo="true" mt="1601469046721" redirect="true"/>
+  <file name="about.html" crc="3955149343" seo="true" mt="1601471044056" redirect="true"/>
+</manifest>

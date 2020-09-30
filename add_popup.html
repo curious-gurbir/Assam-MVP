@@ -1,0 +1,139 @@
+<form id="ns_form" name="ns_form">
+    <div id="data-panel">
+        <i class="fa fa-times " id="close"></i>
+        <span id="data-title" class="dt"></span>
+        <span id="data-title2" class="dt">Details :</span>         
+        <div class="input-field" id="f1">
+            <input type="text" id="ns_name" required class="ns_tf" maxlength="100"/>
+            <label for="ns_name">Station Name</label>
+        </div>
+        <div class="input-field" id="f2">
+            <input type="password" id="ns_pass" required class="ns_tf" maxlength="50"/>
+            <label for="ns_pass">Password</label>
+        </div>
+        <div class="input-field" id="f3">
+            <input type="text" id="ns_location" required class="ns_tf" maxlength="500"/>
+            <label for="ns_location">Location</label>
+        </div>
+        <div class="input-field" id="f4">
+            <input type="text" id="ns_admin" required class="ns_tf" maxlength="100"/>
+            <label for="ns_admin">Admin Name</label>
+        </div>
+        <div id="l1">
+            <div class="circle-loader">
+                <div class="checkmark draw"></div>
+            </div>
+        </div>                    
+        <button id="ns_submit" value="add">Add Station</button>
+    </div>
+</form>
+<script>
+    var nsid,srno;
+    var success=false;
+    $("#ns_form").submit(function(){
+        return false;
+    });
+    $('#close').click(function(){
+        $('#data-panel').slideUp(400,clear_pop);
+        get_table();
+    });
+    function clear_pop(){
+        $('pop1').html('');
+    }
+    $('#ns_submit').click(function(){
+        if(success){
+            load_nsid();
+            return;
+        }
+        process('loading');
+        $.post("add_val.php", {
+            srno : srno,
+            nsid : nsid,
+            nsname: $('#ns_name').val(),
+            nspass: $('#ns_pass').val(),
+            nslocation: $('#ns_location').val(),
+            nsadmin: $('#ns_admin').val()
+        }, function(result){
+            process(result);
+        });
+    });
+    function process(state){
+        if(state=="begin"){
+            $('#l1').fadeOut();
+            $('.dt').fadeIn();
+            $('.input-field').fadeIn();
+            $('#ns_submit').html('Add Station');
+            $('.ns_tf').val("");
+            success=false;
+        }
+        if(state=="loading"){
+            $('.circle-loader').removeClass('load-complete');
+            $('.checkmark').hide();
+            $('.dt').fadeOut();
+            $('.input-field').fadeOut();
+            $('#l1').fadeIn();
+            $('#ns_submit').html('Loading...');
+            btn_state("off");
+        }
+        if(state=="success"){
+            $('.circle-loader').toggleClass('load-complete');
+            $('.checkmark').toggle();
+            $('#ns_submit').html('Done');
+            btn_state("on");
+            success=true;
+        }
+        if(state=="failed"){
+            $('#data-title').html('Connection Error');
+            $('.dt').fadeOut();
+            $('.input-field').fadeOut();
+            $('#l1').fadeOut();
+            $('#ns_submit').html('Request Failed');
+            btn_state("off");
+        }
+    }
+    function checkform(){
+        var f = document.forms["ns_form"].elements;
+        var cansubmit = true;
+        for(var i = 0; i < f.length; i++) {
+            if (f[i].value.length == 0) cansubmit = false;
+        }
+        if(cansubmit) {
+            btn_state('on');
+        }else {
+            btn_state('off');
+        }
+    }
+    checkform();
+    function btn_state(state){
+        if(state=="off"){
+            $("#ns_submit").prop('disabled',true);
+            $("#ns_submit").css('opacity',"0.5");
+            return;
+        }
+        if(state=="on"){
+            $("#ns_submit").prop('disabled',false);
+            $("#ns_submit").css('opacity',"1");
+        }
+    }
+    $('.ns_tf').on('input',function(){
+        checkform();
+    });
+    function load_nsid(){
+        process('loading');
+        $.post("get_data.php",{
+                q : 'get_nsid'
+            }, function(result){
+                if(result!="failed"){
+                    var sp=result.split(",");
+                    srno = sp[0];
+                    nsid = sp[1];
+                    $('#data-title').html('Station '+nsid);
+                    process('begin');
+                }else{
+                    $('#data-title').html('Connection Error');
+                    process('failed');
+                }         
+            }
+        );
+    }
+</script>

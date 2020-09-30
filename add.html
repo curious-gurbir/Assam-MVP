@@ -1,0 +1,353 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Add Station</title>
+    <style>
+		@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+        #data-panel{
+            width: 900px;
+            height: 600px;
+            background: #2c2c2c;
+            position: fixed;
+            z-index: 2;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 12px;
+            display: none;
+        }
+        #close{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+            color: #707070;
+            transition-duration: 0.4s;
+        }
+        #close:hover{
+            color: red;
+        }
+        #data-title{
+            color: #707070;
+            font-size: 20px;
+            font-weight: 700;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-family: 'Montserrat';
+        }
+        #data-title2{
+            color: #707070;
+            font-size: 20px;
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            font-family: 'Montserrat';
+        }
+        form {
+            margin: 100px;
+            font-family: 'Montserrat';
+        }
+        .input-field {
+            position: relative;
+            width: 250px;
+            height: 44px;
+            line-height: 44px;
+        }
+        label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            color: #d3d3d3;
+            transition: 0.2s all;
+            cursor: text;
+        }
+        .ns_tf{
+            width: 100%;
+            border: 0;
+            outline: 0;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid #d3d3d3;
+            box-shadow: none;
+            color: #fff;
+            font-family: 'Montserrat';
+            background: transparent;
+        }
+        .ns_tf:focus,
+        .ns_tf:valid {
+        border-color: #00dd22;
+        }
+        .ns_tf:focus~label,
+        .ns_tf:valid~label {
+        font-size: 12px;
+        top: -25px;
+        color: #00dd22;
+        }
+        .ns_tf:invalid,
+        .ns_tf:invalid~label {
+            outline: 0;
+            color: #ff2300;
+            border-color: #ff2300;
+        }
+        #f1{
+            position: absolute;
+            top: 200px;
+            left: 100px;
+        }
+        #f2{
+            position: absolute;
+            top: 200px;
+            right: 100px;
+        }
+        #f3{
+            position: absolute;
+            top: 350px;
+            left: 100px;
+        }
+        #f4{
+            position: absolute;
+            top: 350px;
+            right: 100px;
+        }
+        #ns_submit{
+            border: 2px solid white;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-family: 'Montserrat';
+            color : white;
+            background: transparent;
+            font-size: 20px;
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            transition-duration: 0.4s;
+        }
+        #ns_submit:hover{
+            border-color: #0f0;
+            color: #0f0;
+        }
+        #ns_submit:focus{
+            outline: none;
+        }
+        .circle-loader {
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-left-color: #5cb85c;
+            animation: loader-spin 1.2s infinite linear;
+            display: inline-block;
+            border-radius: 50%;
+            width: 7em;
+            height: 7em;
+        }
+        .load-complete {
+            -webkit-animation: none;
+            animation: none;
+            border-color: #5cb85c;
+            transition: border 500ms ease-out;
+        }
+        .checkmark {
+            display: none;
+        }
+        .checkmark.draw:after {
+            animation-duration: 800ms;
+            animation-timing-function: ease;
+            animation-name: checkmark;
+            transform: scaleX(-1) rotate(135deg);
+        }
+        .checkmark:after {
+            opacity: 1;
+            height: 3.5em;
+            width: 1.75em;
+            transform-origin: left top;
+            border-right: 3px solid #5cb85c;
+            border-top: 3px solid #5cb85c;
+            content: "";
+            left: 1.75em;
+            top: 3.5em;
+            position: absolute;
+        }
+        @keyframes loader-spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes checkmark {
+            0% {
+                height: 0;
+                width: 0;
+                opacity: 1;
+            }
+            20% {
+                height: 0;
+                width: 1.75em;
+                opacity: 1;
+            }
+            40% {
+                height: 3.5em;
+                width: 1.75em;
+                opacity: 1;
+            }
+            100% {
+                height: 3.5em;
+                width: 1.75em;
+                opacity: 1;
+            }
+        }
+        #l1{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="add-btn">Add Station</button>
+    <form id="ns_form" name="ns_form">
+        <div id="data-panel">
+            <i class="fa fa-times " id="close"></i>
+            <span id="data-title" class="dt"></span>
+            <span id="data-title2" class="dt">Details :</span>         
+                <div class="input-field" id="f1">
+                    <input type="text" id="ns_name" required class="ns_tf" maxlength="100"/>
+                    <label for="ns_name">Station Name</label>
+                </div>
+                <div class="input-field" id="f2">
+                    <input type="password" id="ns_pass" required class="ns_tf" maxlength="50"/>
+                    <label for="ns_pass">Password</label>
+                </div>
+                <div class="input-field" id="f3">
+                    <input type="text" id="ns_location" required class="ns_tf" maxlength="500"/>
+                    <label for="ns_location">Location</label>
+                </div>
+                <div class="input-field" id="f4">
+                    <input type="text" id="ns_admin" required class="ns_tf" maxlength="100"/>
+                    <label for="ns_admin">Admin Name</label>
+                </div>
+                <div id="l1">
+                    <div class="circle-loader">
+                        <div class="checkmark draw"></div>
+                    </div>
+                </div>                    
+                <button id="ns_submit" value="add">Add Station</button>
+        </div>
+    </form>
+    <script>
+        var nsid,srno;
+        var success=false;
+        $("#ns_form").submit(function(){
+            return false;
+        });
+        $('#close').click(function(){
+            $('#data-panel').slideUp();
+        });
+        $('#add-btn').click(function(){
+            $('#data-panel').slideDown();
+            load_nsid();
+        });
+        $('#ns_submit').click(function(){
+            if(success){
+                load_nsid();
+                return;
+            }
+            process('loading');
+            $.post("add_val.php", {
+                srno : srno,
+                nsid : nsid,
+                nsname: $('#ns_name').val(),
+                nspass: $('#ns_pass').val(),
+                nslocation: $('#ns_location').val(),
+                nsadmin: $('#ns_admin').val()
+            }, function(result){
+                process(result);
+            });
+        });
+        function process(state){
+            if(state=="begin"){
+                $('#l1').fadeOut();
+                $('.dt').fadeIn();
+                $('.input-field').fadeIn();
+                $('#ns_submit').html('Add Station');
+                $('.ns_tf').val("");
+                success=false;
+            }
+            if(state=="loading"){
+                $('.circle-loader').removeClass('load-complete');
+                $('.checkmark').hide();
+                $('.dt').fadeOut();
+                $('.input-field').fadeOut();
+                $('#l1').fadeIn();
+                $('#ns_submit').html('Loading...');
+                btn_state("off");
+            }
+            if(state=="success"){
+                $('.circle-loader').toggleClass('load-complete');
+                $('.checkmark').toggle();
+                $('#ns_submit').html('Done');
+                btn_state("on");
+                success=true;
+            }
+            if(state=="failed"){
+                $('#data-title').html('Connection Error');
+                $('.dt').fadeOut();
+                $('.input-field').fadeOut();
+                $('#l1').fadeOut();
+                $('#ns_submit').html('Request Failed');
+                btn_state("off");
+            }
+        }
+        function checkform(){
+            var f = document.forms["ns_form"].elements;
+            var cansubmit = true;
+            for(var i = 0; i < f.length; i++) {
+                if (f[i].value.length == 0) cansubmit = false;
+            }
+            if(cansubmit) {
+                btn_state('on');
+            }else {
+                btn_state('off');
+            }
+        }
+        checkform();
+        function btn_state(state){
+            if(state=="off"){
+                $("#ns_submit").prop('disabled',true);
+                $("#ns_submit").css('opacity',"0.5");
+                return;
+            }
+            if(state=="on"){
+                $("#ns_submit").prop('disabled',false);
+                $("#ns_submit").css('opacity',"1");
+            }
+        }
+        $('.ns_tf').on('input',function(){
+            checkform();
+        });
+        function load_nsid(){
+            process('loading');
+            $.post("get_data.php",{
+                    q : 'get_nsid'
+                }, function(result){
+                    if(result!="failed"){
+                        var sp=result.split(",");
+                        srno = sp[0];
+                        nsid = sp[1];
+                        $('#data-title').html('Station '+nsid);
+                        process('begin');
+                    }else{
+                        $('#data-title').html('Connection Error');
+                        process('failed');
+                    }         
+                }
+            );
+        }
+    </script>
+</body>
+</html>
