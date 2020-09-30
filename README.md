@@ -14,3 +14,15 @@ Inventory Mangement System
 - DB structure is inspired by Discord
 - DataTable plugin is used in 'Stations' page but due to lack of complete customization the 'Edit Table' is completely made from scratch
 - Dashboard is not linked with backend, that requires completion of 'Station' panel
+- QR Code serial key for each item can be implement in this module
+- Everytime a personnel have to use generally restricted inventory, the QR code can be scanned to get permission from superior
+- Budget and alert systems can improve the analysis of data in a lot more effecient ways
+
+## Team Roles
+
+- **Sujeet Kumar :** Majorly experienced in logical building of backend and Database handling
+- **Sharad Ji Shukla :** Majorly experienced in research and data analysis based upon real world data
+- **Gurbir Singh Dhaliwal :** Majorly experienced in web languages and graphic related skills
+
+**About completion of project**
+> Most of the efforts were focused upon developing a new way that can change the way inventory is handled. Every time a lot of issues show up due to lack of care in a balanced task like keeping record of things. Some people misuse the official things without even facing any lawsuit later on, this system can get rid of most of those situations by alotting a unique QR and String ID to each item and by keeping track of each change made in database from each portal.  
