@@ -3,6 +3,7 @@ Inventory Mangement System
 
 ## Structure of the project
 
+- Before testing change `sql_data.php' file according to your server and SQL configurtions
 - Admin Panel Frontend is made using Adobe Muse (Avoid using it for front end in projects that are going to have heavy backend, due to numerous restrictions)
 - `Add Station` and `Edit` features are made from scratch using web languages
 - Backend DB is optimized for long term use along with DB Normalization (Only admin portion is ready)
